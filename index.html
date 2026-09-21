@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ararat Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1a2e;
+    --bg-panel: #22223f;
+    --yellow: #f4d35e;
+    --coral: #ee6c4d;
+    --blue: #3d5a80;
+    --ink: #e8e8e8;
+    --dim: #8888a8;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(244,211,94,0.05) 0, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(238,108,77,0.06) 0, transparent 40%);
+    color: var(--ink);
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+  .pixel-font {
+    font-family: 'Press Start 2P', monospace;
+  }
+
+  header {
+    text-align: center;
+    padding: 64px 20px 32px;
+  }
+
+  .logo {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(22px, 5vw, 40px);
+    color: var(--yellow);
+    text-shadow: 3px 3px 0 var(--coral);
+    letter-spacing: 2px;
+    display: inline-block;
+    animation: flicker 4s infinite steps(1);
+  }
+
+  @keyframes flicker {
+    0%, 92%, 100% { color: var(--yellow); text-shadow: 3px 3px 0 var(--coral); }
+    94% { color: var(--coral); text-shadow: 3px 3px 0 var(--yellow); }
+  }
+
+  .tagline {
+    margin-top: 16px;
+    font-size: 22px;
+    color: var(--dim);
+  }
+
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 20px 20px 80px;
+  }
+
+  .shelf {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+    margin-top: 40px;
+  }
+
+  .cartridge {
+    background: var(--bg-panel);
+    border: 4px solid var(--coral);
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.4);
+    padding: 24px;
+  }
+
+  .cartridge h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 18px;
+    color: var(--yellow);
+    margin: 0 0 16px;
+  }
+
+  .cart-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background:
+      repeating-conic-gradient(var(--blue) 0% 25%, #2b3a5c 0% 50%) 0 0 / 24px 24px;
+    border: 3px solid var(--dim);
+    margin-bottom: 16px;
+  }
+
+  .cartridge p {
+    font-size: 20px;
+    color: var(--ink);
+  }
+
+  .download-btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 14px 22px;
+    background: var(--coral);
+    color: var(--bg);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 13px;
+    text-decoration: none;
+    border: none;
+    box-shadow: 4px 4px 0 #a8442f;
+    transition: transform 0.05s, box-shadow 0.05s;
+  }
+
+  .download-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 #a8442f;
+  }
+
+  .archive {
+    margin-top: 20px;
+    border-top: 2px dashed var(--dim);
+    padding-top: 16px;
+  }
+
+  .archive summary {
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--yellow);
+  }
+
+  .version-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 18px;
+  }
+
+  .version-row a {
+    color: var(--coral);
+  }
+
+  .coming-soon {
+    border: 3px dashed var(--dim);
+    background: transparent;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 260px;
+  }
+
+  .coming-soon span {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--dim);
+    font-size: 14px;
+    text-align: center;
+    line-height: 2;
+  }
+
+  footer {
+    text-align: center;
+    padding: 32px 20px 48px;
+    color: var(--dim);
+    font-size: 17px;
+  }
+  .platform-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .platform-tab {
+    flex: 1;
+    padding: 10px;
+    background: var(--blue);
+    color: var(--ink);
+    border: 2px solid transparent;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .platform-tab.active {
+    background: var(--coral);
+    border-color: var(--yellow);
+  }
+
+  .platform-panel {
+    display: none;
+  }
+
+  .platform-panel.active {
+    display: block;
+  }
+
+  .no-build {
+    color: var(--dim);
+    font-size: 18px;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">ARARAT STUDIO</div>
+  <p class="tagline">bir kişilik stüdyo, koca hayaller</p>
+</header>
+
+<main>
+  <div class="shelf">
+
+    <div class="cartridge">
+      <div class="cart-frame"></div>
+      <h2>SUGAR TEDDY</h2>
+      <p>Şekerlemelerin arasında koşan bir oyuncak ayının sonsuz kaçışı. Diken, hız ve refleks üzerine kurulu bir endless runner.</p>
+
+      <div class="platform-tabs">
+        <div class="platform-tab active" onclick="showPlatform('android')">ANDROID</div>
+        <div class="platform-tab" onclick="showPlatform('windows')">WINDOWS</div>
+      </div>
+
+      <div id="platform-android" class="platform-panel active">
+        <a class="download-btn" href="https://github.com/ararat-studio/sugar-teddy/releases/tag/v1.1.0.0" target="_blank" rel="noopener">İNDİR (Android)</a>
+
+        <details class="archive">
+          <summary>Sürüm Arşivi</summary>
+          <div class="version-row">
+            <span>v1.1.0.0 — hız ve fizik dengesi güncellendi</span>
+            <a href="https://github.com/ararat-studio/sugar-teddy/releases/tag/v1.1.0.0" target="_blank" rel="noopener">indir</a>
+          </div>
+          <div class="version-row">
+            <span>v1.0.0.0 — ilk sürüm</span>
+            <a href="https://github.com/ararat-studio/sugar-teddy/releases/tag/v1.0.0.0" target="_blank" rel="noopener">indir</a>
+          </div>
+        </details>
+      </div>
+
+      <div id="platform-windows" class="platform-panel">
+        <a class="download-btn" href="https://github.com/ararat-studio/sugar-teddy/releases/tag/v1.0.0.0" target="_blank" rel="noopener">İNDİR (Windows)</a>
+        <p class="no-build" style="margin-top:12px;">En güncel Windows sürümü henüz v1.0.0.0 — yeni sürüm çıktığında burası güncellenecek.</p>
+
+        <details class="archive">
+          <summary>Sürüm Arşivi</summary>
+          <div class="version-row">
+            <span>v1.0.0.0 — ilk sürüm</span>
+            <a href="https://github.com/ararat-studio/sugar-teddy/releases/tag/v1.0.0.0" target="_blank" rel="noopener">indir</a>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="cartridge coming-soon">
+      <span>???<br>YAKINDA</span>
+    </div>
+
+  </div>
+</main>
+
+<script>
+  function showPlatform(name) {
+    document.querySelectorAll('.platform-panel').forEach(function(el) {
+      el.classList.toggle('active', el.id === 'platform-' + name);
+    });
+    document.querySelectorAll('.platform-tab').forEach(function(el) {
+      el.classList.toggle('active', el.textContent.trim().toLowerCase() === name);
+    });
+  }
+</script>
+
+<footer>
+  Godot Engine ile yapıldı 🐻 — © Ararat Studio
+</footer>
+
+</body>
+</html>
