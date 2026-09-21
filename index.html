@@ -96,6 +96,15 @@
       repeating-conic-gradient(var(--blue) 0% 25%, #2b3a5c 0% 50%) 0 0 / 24px 24px;
     border: 3px solid var(--dim);
     margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .cart-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated;
+    display: block;
   }
 
   .cartridge p {
@@ -220,7 +229,9 @@
   <div class="shelf">
 
     <div class="cartridge">
-      <div class="cart-frame"></div>
+      <div class="cart-frame">
+        <img src="sugar-teddy.png" alt="Sugar Teddy ekran görüntüsü">
+      </div>
       <h2>SUGAR TEDDY</h2>
       <p>Şekerlemelerin arasında koşan bir oyuncak ayının sonsuz kaçışı. Diken, hız ve refleks üzerine kurulu bir endless runner.</p>
 
